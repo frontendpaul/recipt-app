@@ -1,9 +1,86 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.3;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+
+
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  height: 100%;
+  font-family: Epilogue, sans-serif;
+  color: var(--stone-900);
 }
 
 a {
@@ -11,6 +88,102 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+
+/* Layout */
+#__next {
+  height: 100%;
+}
+
+
+/* Typography */
+.heading {
+  margin-bottom: var(--s-3);
+  font-size: var(--fs-6);
+  font-weight: bold;
+  line-height: 1.15;
+}
+
+p {
+  font-size: var(--fs-3);
+  font-weight: normal;
+  line-height: 1.4;
+  color: var(--stone-600);
+}
+
+p+p {
+  margin-top: 1em;
+}
+
+@media screen and (min-width: 600px) {
+  .mobile-break {
+    display: none;
+  }
+}
+
+
+.container {
+  display: grid;
+  align-items: center;
+}
+
+.card {
+  text-align: center;
+  display: grid;
+  gap: var(--s-6);
+  padding: var(--s-3);
+}
+
+.imageWrapper {
+  display: grid;
+  place-items: center;
+  border-radius: var(--br-600);
+  background-color: var(--light-red-100);
+  padding-block: var(--s-6);
+}
+
+.imageWrapper img {
+  width: 70%;
+}
+
+.buttonsWrapper {
+  display: grid;
+  gap: var(--s-6);
+  margin-top: var(--s-6);
+}
+
+.btn {
+  --padding-base: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-base) calc(var(--padding-base) * 2.5);
+  line-height: 1;
+  font-size: var(--fs-3);
+  font-weight: 500;
+  color: inherit;
+  border: 2px solid transparent;
+  border-radius: var(--br-200);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  color: var(--white);
+  background-color: var(--light-red-300);
+  box-shadow: var(--light-red-shadow-500);
+}
+
+.btn-primary:focus,
+.btn-primary:hover {
+  box-shadow: var(--light-red-shadow-700);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--stone-100);
+}
+
+.btn-outline:focus,
+.btn-outline:hover {
+  border-color: var(--stone-200);
 }

@@ -1,0 +1,72 @@
+:root {
+  /* ----- Colors ----- */
+  --white: #ffffff;
+  --black: #000000;
+
+  --light-red-100: #FCDEDE;
+  --light-red-300: #FC5D5A;
+  --light-red-400: #cb4949;
+  --light-red-500: #a63232;
+
+  --light-green-300: #84FC5A;
+
+  --stone-50: #fafaf9;
+  --stone-100: #f5f5f4;
+  --stone-200: #e7e5e4;
+  --stone-300: #d6d3d1;
+  --stone-400: #a8a29e;
+  --stone-500: #78716c;
+  --stone-600: #57534e;
+  --stone-700: #44403c;
+  --stone-800: #292524;
+  --stone-900: #1c1917;
+
+  --success: var(--light-green-300);
+  --danger: var(--light-red-300);
+
+  /*--- Shadows ---*/
+  --shadow-500: 0 4px 32px rgba(0, 0, 0, 0.1);
+  --light-red-shadow-500: 0px 8px 24px rgba(252, 106, 103, 0.25);
+  --light-red-shadow-700: 0px 8px 24px rgba(252, 106, 103, 0.5);
+
+  /*--- Borders ---*/
+  --br-200: 0.5rem;
+  --br-300: 0.875rem;
+  --br-400: 1rem;
+  --br-500: 1.5rem;
+  --br-600: 1.75rem;
+  --br-700: 2rem;
+
+  /*--- Spacing ---*/
+  --spacer: 1rem;
+  --s-0: 0;
+  --s-1: calc(var(--spacer) * 0.25);
+  --s-2: calc(var(--spacer) * 0.5);
+  --s-3: calc(var(--spacer) * 0.75);
+  --s-4: calc(var(--spacer) * 1);
+  --s-5: calc(var(--spacer) * 1.5);
+  --s-6: calc(var(--spacer) * 2);
+  --s-7: calc(var(--spacer) * 3);
+  --s-8: calc(var(--spacer) * 4);
+  --s-9: calc(var(--spacer) * 5);
+  --s-10: calc(var(--spacer) * 6);
+
+  /*--- Sizes ---*/
+  --aside-width: 500px;
+
+  /*--- Typography ---*/
+  --fs-2: 0.75rem;
+  --fs-25: 0.875rem;
+  --fs-3: 1rem;
+  --fs-35: 1.125rem;
+  --fs-4: 1.25rem;
+  --fs-5: 1.5rem;
+  --fs-6: 1.75rem;
+  --fs-7: 2rem;
+  --fs-8: 2.5rem;
+  --fs-9: 3rem;
+
+  /*--- Others ---*/
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --transition: 0.3s var(--ease-out);
+}
