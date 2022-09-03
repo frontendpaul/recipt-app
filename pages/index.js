@@ -44,21 +44,19 @@ export default function Home() {
             variants={item}
           />
         </div>
-        <div className="content">
-          <motion.div variants={item}>
-            <h1 className="heading">
-              Never lose <br className="mobile-break" /> a receipt again
-            </h1>
-            <p>
-              Easily and secure archive all <br className="mobile-break" />{' '}
-              important invoices, bills and receipts.
-            </p>
-          </motion.div>
-          <motion.div className="buttonsWrapper" variants={item}>
+        <motion.div className="content" variants={item}>
+          <h1 className="heading">
+            Never lose <br /> a receipt again
+          </h1>
+          <p>
+            Easily and secure archive all <br /> important invoices, bills and
+            receipts.
+          </p>
+          <div className="buttonsWrapper">
             <button className="btn btn-primary">Create an account</button>
             <button className="btn btn-outline">Log in</button>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </motion.div>
     </div>
   );
