@@ -79,7 +79,7 @@ select {
 html,
 body {
   height: 100%;
-  font-family: Epilogue, sans-serif;
+  font-family: Lato, sans-serif;
   color: var(--stone-900);
 }
 
@@ -91,7 +91,7 @@ a {
 
 /* Layout */
 #__next {
-  height: 100%;
+  /* height: 100%; */
 }
 
 
@@ -121,38 +121,51 @@ p+p {
 }
 
 
-.container {
+.page {
   display: flex;
   justify-content: center;
-  height: 100%;
-  background-color: var(--stone-100);
+  min-height: 100vh;
+  background-color: var(--stone-50);
 }
 
 .card {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-6);
   padding: var(--s-3);
   width: 100%;
   background-color: var(--white);
+  overflow: hidden;
+  text-align: center;
 }
 
+.cardLayout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-6);
+}
+
+.content {}
+
 @media (min-width: 640px) {
-  .container {
+  .page {
     align-items: center;
   }
 
   .card {
-    flex-direction: row;
     width: min(100%, 800px);
     margin-inline: var(--s-5);
     padding: var(--s-5);
-    border-radius: var(--br-800);
+    border-radius: var(--br-600);
     box-shadow: var(--shadow-400);
   }
 
-  .card>* {
+  .card.isForm {
+    width: min(100%, 400px);
+  }
+
+  .cardLayout {
+    flex-direction: row;
+  }
+
+  .cardLayout>* {
     flex: 1;
   }
 
@@ -165,7 +178,7 @@ p+p {
 .imageWrapper {
   display: grid;
   place-items: center;
-  border-radius: var(--br-600);
+  border-radius: var(--br-400);
   background-color: var(--light-red-100);
   padding-block: var(--s-6);
 }
@@ -196,6 +209,12 @@ p+p {
   transition: var(--transition);
 }
 
+.btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .btn-primary {
   color: var(--white);
   background-color: var(--light-red-300);
@@ -214,5 +233,94 @@ p+p {
 
 .btn-outline:focus,
 .btn-outline:hover {
-  border-color: var(--stone-200);
+  border-color: var(--stone-300);
+}
+
+.btn svg {
+  width: 1.5em;
+  height: 1.5em;
+  margin: -.5em;
+}
+
+.icon-left svg {
+  margin-right: 1em;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: var(--s-1);
+  margin-block: var(--s-5);
+}
+
+.formField p {
+  display: none;
+}
+
+.formField label {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  line-height: 1;
+  font-size: var(--fs-25);
+}
+
+.formField input {
+  --padding-base: 0.5rem;
+  padding: var(--padding-base) 0;
+  border: 0;
+  border-bottom: 1px solid var(--stone-300);
+  background-color: transparent;
+  /* border-radius: var(--br-200); */
+  line-height: 1;
+  transition: var(--transition);
+}
+
+.formField input:focus,
+.formField input:active {
+  outline: none;
+  border-color: var(--stone-600);
+}
+
+.formField input.valid {
+  border-color: var(--color-success);
+}
+
+.formField input.invalid {
+  border-color: var(--color-danger);
+}
+
+.devider {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.devider::before {
+  content: '';
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top: 65%;
+  background-color: var(--stone-300);
+}
+
+.devider span {
+  z-index: 1;
+  background: var(--white);
+  padding-inline: var(--s-3);
+  font-size: var(--fs-25);
+  color: var(--stone-600);
+  line-height: 0.8;
+  padding-top: 0.2em;
+}
+
+.cardFooter {
+  margin-top: var(--s-5);
+}
+
+.cardFooter a {
+  color: var(--light-red-300);
+  margin-left: var(--s-1);
 }

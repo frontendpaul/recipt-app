@@ -1,7 +1,46 @@
 import { motion } from 'framer-motion';
-import Head from 'next/head';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import Account from '../components/Account';
+import { supabase } from '../utils/supabaseClient';
 
-export default function Home() {
+const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function getInitialSession() {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      // only update the react state if the component is still mounted
+      if (mounted) {
+        if (session) {
+          setSession(session);
+        }
+
+        setIsLoading(false);
+      }
+    }
+
+    getInitialSession();
+
+    const { subscription } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+      }
+    );
+
+    return () => {
+      mounted = false;
+
+      subscription?.unsubscribe();
+    };
+  }, []);
+
   const container = {
     show: {
       transition: {
@@ -21,43 +60,44 @@ export default function Home() {
   };
 
   return (
-    <div className="container">
-      <Head>
-        <title>BillKeep</title>
-        <meta
-          name="description"
-          content="Easily and secure archive all
-          important invoices, bills and receipts."
-        />
-      </Head>
-
-      <motion.div
-        className="card"
-        variants={container}
-        initial="hidden"
-        animate="show"
-      >
-        <div className="imageWrapper">
-          <motion.img
-            src="receipt.svg"
-            alt="An illustration of a receipt laying on the mobile phone with a few coins around it."
-            variants={item}
-          />
-        </div>
-        <motion.div className="content" variants={item}>
-          <h1 className="heading">
-            Never lose <br /> a receipt again
-          </h1>
-          <p>
-            Easily and secure archive all <br /> important invoices, bills and
-            receipts.
-          </p>
-          <div className="buttonsWrapper">
-            <button className="btn btn-primary">Create an account</button>
-            <button className="btn btn-outline">Log in</button>
+    <motion.div
+      className="cardLayout"
+      variants={container}
+      initial="hidden"
+      animate="show"
+    >
+      {!session ? (
+        <>
+          <div className="imageWrapper">
+            <motion.img
+              src="receipt.svg"
+              alt="An illustration of a receipt laying on the mobile phone with a few coins around it."
+              variants={item}
+            />
           </div>
-        </motion.div>
-      </motion.div>
-    </div>
+          <motion.div className="content" variants={item}>
+            <h1 className="heading">
+              Never lose <br /> a receipt again
+            </h1>
+            <p>
+              Easily and secure archive all <br /> important invoices, bills and
+              receipts.
+            </p>
+            <div className="buttonsWrapper">
+              <Link href="register">
+                <a className="btn btn-primary">Create an account</a>
+              </Link>
+              <Link href="login">
+                <a className="btn btn-outline">Log in</a>
+              </Link>
+            </div>
+          </motion.div>
+        </>
+      ) : (
+        <Account key={session.user.id} session={session} />
+      )}
+    </motion.div>
   );
-}
+};
+
+export default Home;

@@ -12,12 +12,13 @@ xxl: 1536px;
   --white: #ffffff;
   --black: #000000;
 
+  --light-red-50: hsl(0, 100%, 99%);
   --light-red-100: #FCDEDE;
   --light-red-300: #FC5D5A;
   --light-red-400: #cb4949;
   --light-red-500: #a63232;
 
-  --light-green-300: #84FC5A;
+  --light-green-300: #7ff056;
 
   --stone-50: #fafaf9;
   --stone-100: #f5f5f4;
@@ -30,8 +31,8 @@ xxl: 1536px;
   --stone-800: #292524;
   --stone-900: #1c1917;
 
-  --success: var(--light-green-300);
-  --danger: var(--light-red-300);
+  --color-success: var(--light-green-300);
+  --color-danger: var(--light-red-300);
 
   /*--- Shadows ---*/
   --shadow-400: 0 4px 32px rgba(0, 0, 0, 0.05);
