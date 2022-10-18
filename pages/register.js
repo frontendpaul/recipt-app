@@ -17,13 +17,54 @@ function Register() {
       setLoading(true);
       const { error } = await supabase.auth.signUp({ email, password });
       if (error) throw error;
-      router.push('/');
+      await createProfile();
     } catch (error) {
       alert(error.error_description || error.message);
     } finally {
       setLoading(false);
+      router.push('/');
     }
   };
+
+  async function getCurrentUser() {
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
+
+    if (error) {
+      throw error;
+    }
+
+    if (!session?.user) {
+      throw new Error('User not logged in');
+    }
+
+    return session.user;
+  }
+
+  async function createProfile() {
+    try {
+      setLoading(true);
+      const user = await getCurrentUser();
+
+      const updates = {
+        id: user.id,
+        email: user.email,
+      };
+
+      let { error } = await supabase.from('users').upsert(updates);
+
+      if (error) {
+        throw error;
+      }
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <>
       <h1 className="heading">Welcome!</h1>
