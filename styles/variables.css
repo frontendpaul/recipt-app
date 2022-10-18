@@ -9,36 +9,38 @@ xxl: 1536px;
 
 :root {
   /* ----- Colors ----- */
-  --white: #ffffff;
-  --black: #000000;
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(0, 0%, 0%);
 
   --light-red-50: hsl(0, 100%, 99%);
-  --light-red-100: #FCDEDE;
-  --light-red-300: #FC5D5A;
-  --light-red-400: #cb4949;
-  --light-red-500: #a63232;
+  --light-red-100: hsl(0, 83%, 93%);
+  --light-red-200: hsl(0, 89%, 78%);
+  --light-red-300: hsl(1, 96%, 67%);
+  --light-red-400: hsl(0, 56%, 54%);
+  --light-red-500: hsl(0, 54%, 42%);
 
-  --light-green-300: #7ff056;
+  --light-green-100: hsl(104, 84%, 92%);
+  --light-green-300: hsl(104, 84%, 64%);
 
-  --stone-50: #fafaf9;
-  --stone-100: #f5f5f4;
-  --stone-200: #e7e5e4;
-  --stone-300: #d6d3d1;
-  --stone-400: #a8a29e;
-  --stone-500: #78716c;
-  --stone-600: #57534e;
-  --stone-700: #44403c;
-  --stone-800: #292524;
-  --stone-900: #1c1917;
+  --stone-50: hsl(60, 9%, 98%);
+  --stone-100: hsl(60, 5%, 96%);
+  --stone-200: hsl(20, 6%, 90%);
+  --stone-300: hsl(24, 6%, 83%);
+  --stone-400: hsl(24, 5%, 64%);
+  --stone-500: hsl(25, 5%, 45%);
+  --stone-600: hsl(33, 5%, 32%);
+  --stone-700: hsl(30, 6%, 25%);
+  --stone-800: hsl(12, 6%, 15%);
+  --stone-900: hsl(24, 10%, 10%);
 
   --color-success: var(--light-green-300);
   --color-danger: var(--light-red-300);
 
   /*--- Shadows ---*/
-  --shadow-400: 0 4px 32px rgba(0, 0, 0, 0.05);
-  --shadow-500: 0 4px 32px rgba(0, 0, 0, 0.1);
-  --light-red-shadow-500: 0px 8px 24px rgba(252, 106, 103, 0.25);
-  --light-red-shadow-700: 0px 8px 24px rgba(252, 106, 103, 0.5);
+  --shadow-400: 0 4px 32px hsla(0, 0%, 0%, 0.05);
+  --shadow-500: 0 4px 32px hsla(0, 0%, 0%, 0.102);
+  --light-red-shadow-500: 0px 8px 24px hsla(1, 96%, 70%, 0.25);
+  --light-red-shadow-700: 0px 8px 24px hsla(1, 96%, 70%, 0.5);
 
   /*--- Borders ---*/
   --br-200: 0.5rem;
