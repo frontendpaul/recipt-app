@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../utils/supabaseClient';
+import Header from './Header';
 
-export default function Account({ session }) {
+const Dashboard = ({ session }) => {
   const [loading, setLoading] = useState(true);
   const [bills, setBills] = useState(null);
 
@@ -30,19 +31,17 @@ export default function Account({ session }) {
   };
 
   return (
-    <div>
-      <div>
-        <button
-          className="button block"
-          onClick={() => supabase.auth.signOut()}
-        >
-          Sign Out
-        </button>
-        {!loading &&
-          bills.map((bill) => {
-            return <div key={bill.id}>{bill.title}</div>;
-          })}
-      </div>
+    <div className="dashboard">
+      <Header title="Your documents" />
+      <button className="button block" onClick={() => supabase.auth.signOut()}>
+        Sign Out
+      </button>
+      {!loading &&
+        bills.map((bill) => {
+          return <div key={bill.id}>{bill.title}</div>;
+        })}
     </div>
   );
-}
+};
+
+export default Dashboard;

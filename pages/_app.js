@@ -1,12 +1,12 @@
-import NoUserLayout from '../layouts/noUserLayout';
+import Layout from '../layouts/Layout';
 import '../styles/globals.css';
 import '../styles/variables.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <NoUserLayout>
+    <Layout>
       <Component {...pageProps} />
-    </NoUserLayout>
+    </Layout>
   );
 }
 

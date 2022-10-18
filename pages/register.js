@@ -65,8 +65,9 @@ function Register() {
     }
   }
 
+  //TODO: handle form validation
   return (
-    <>
+    <div className="cardPadding">
       <h1 className="heading">Welcome!</h1>
       <p>
         Let’s create a new account for you. <br />
@@ -124,7 +125,7 @@ function Register() {
           Already have an account? <Link href="login">Log in</Link>
         </p>
       </footer>
-    </>
+    </div>
   );
 }
 
