@@ -556,9 +556,37 @@ p+p {
 .settingsNav .btn .chevronIcon {
   margin-left: auto;
   color: var(--stone-500);
-  font-size: 0.875rem;
 }
 
 .settingsNav .btn .chevronIcon svg {
+  height: 18px;
+  width: 18px;
   margin-right: unset;
+}
+
+.emptyState {
+  --spacing-base: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-base);
+}
+
+@media (min-width: 640px) {
+  .emptyState {
+    --spacing-base: var(--s-5);
+  }
+}
+
+.emptyStateImageWrapper {
+  width: 40%;
+  margin-bottom: var(--s-7);
+}
+
+.emptyState p {
+  margin-bottom: var(--s-7);
+}
+
+.emptyState .btn {
+  margin-bottom: var(--s-7);
 }

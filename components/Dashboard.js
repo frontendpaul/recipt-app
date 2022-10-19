@@ -2,14 +2,17 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { FiChevronRight, FiLogOut, FiUser } from 'react-icons/fi';
 import { supabase } from '../utils/supabaseClient';
+import EmptyState from './EmptyState';
 import Header from './Header';
 import OffscreenCard from './OffscreenCard';
 
 const Dashboard = ({ session }) => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [bills, setBills] = useState(null);
+  const [bills, setBills] = useState([]);
+  const [isEmptyList, setIsEmptyList] = useState(true);
 
   useEffect(() => {
     getUsersBills();
@@ -31,6 +34,7 @@ const Dashboard = ({ session }) => {
     if (error) console.log('error', error);
     else {
       setBills(bills);
+      setIsEmptyList(bills.length === 0);
       setLoading(false);
     }
   };
@@ -101,10 +105,23 @@ const Dashboard = ({ session }) => {
         <p>Delete accound</p>
       </OffscreenCard>
 
+      <OffscreenCard
+        title="Create new"
+        isOpen={isCreateOpen}
+        setIsOpen={setIsCreateOpen}
+      >
+        {/* TODO: implement create card */}
+        <p>create new item</p>
+      </OffscreenCard>
+
       {!loading &&
-        bills.map((bill) => {
-          return <div key={bill.id}>{bill.title}</div>;
-        })}
+        (isEmptyList ? (
+          <EmptyState createClickHandler={() => setIsCreateOpen(true)} />
+        ) : (
+          bills.map((bill) => {
+            return <div key={bill.id}>{bill.title}</div>;
+          })
+        ))}
     </div>
   );
 };
