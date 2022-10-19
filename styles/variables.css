@@ -38,8 +38,9 @@ xxl: 1536px;
   --color-danger: var(--light-red-300);
 
   /*--- Shadows ---*/
+  --shadow-300: 0 4px 16px hsla(0, 0%, 0%, 0.1);
   --shadow-400: 0 4px 32px hsla(0, 0%, 0%, 0.05);
-  --shadow-500: 0 4px 32px hsla(0, 0%, 0%, 0.102);
+  --shadow-500: 0 4px 32px hsla(0, 0%, 0%, 0.1);
   --light-red-shadow-500: 0px 8px 24px hsla(1, 96%, 70%, 0.25);
   --light-red-shadow-700: 0px 8px 24px hsla(1, 96%, 70%, 0.5);
 

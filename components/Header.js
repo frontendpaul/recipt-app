@@ -1,12 +1,8 @@
-import { FiUser } from 'react-icons/fi';
-
-const Header = ({ title }) => {
+const Header = ({ title, children }) => {
   return (
     <header className="cardHeader">
       <h1 className="headline">{title}</h1>
-      <button className="btn btn-grey btn-with-icon round">
-        <FiUser />
-      </button>
+      {children}
     </header>
   );
 };

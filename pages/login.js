@@ -31,7 +31,7 @@ function Login() {
   //TODO: handle form validation
   return (
     <div className="cardPadding">
-      <h1 className="heading">Hello again!</h1>
+      <h1 className="heading mb-3">Hello again!</h1>
       <p>Enter your credentials to log in.</p>
       <form id="login">
         <div className="formField">

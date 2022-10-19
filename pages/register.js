@@ -68,7 +68,7 @@ function Register() {
   //TODO: handle form validation
   return (
     <div className="cardPadding">
-      <h1 className="heading">Welcome!</h1>
+      <h1 className="heading mb-3">Welcome!</h1>
       <p>
         Let’s create a new account for you. <br />
         Free forever!

@@ -35,7 +35,7 @@ const Welcome = () => {
         />
       </div>
       <motion.div className="content" variants={item}>
-        <h1 className="heading">
+        <h1 className="heading mb-3">
           Never lose <br /> a receipt again
         </h1>
         <p>
