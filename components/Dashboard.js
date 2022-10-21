@@ -1,7 +1,7 @@
-import clsx from 'clsx';
 import { useEffect, useState } from 'react';
-import { FiChevronRight, FiLogOut, FiUser } from 'react-icons/fi';
+import { FiChevronRight, FiLogOut, FiPlus, FiUser } from 'react-icons/fi';
 import { supabase } from '../utils/supabaseClient';
+import Create from './Create';
 import EmptyState from './EmptyState';
 import Header from './Header';
 import OffscreenCard from './OffscreenCard';
@@ -10,38 +10,55 @@ const Dashboard = ({ session }) => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const [isCreateOpen, setIsCreateOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [bills, setBills] = useState([]);
   const [isEmptyList, setIsEmptyList] = useState(true);
+  const [newDocumentId, setNewDocumentId] = useState(0);
 
   useEffect(() => {
     getUsersBills();
   }, []);
 
+  useEffect(() => {
+    setIsEmptyList(bills.length === 0);
+    setNewDocumentId(bills.length + 1);
+  }, [bills]);
+
+  // const getUsersBills = async () => {
+  //   setIsLoading(true);
+  //   let { data: bills, error } = await supabase
+  //     .from('bills')
+  //     .select(
+  //       `
+  //       *,
+  //       images (
+  //         *
+  //       )
+  //     `
+  //     )
+  //     .eq('user_id', session.user.id);
+  //   if (error) console.log('error', error);
+  //   else {
+  //     setBills(bills);
+  //     setIsLoading(false);
+  //   }
+  // };
   const getUsersBills = async () => {
-    setLoading(true);
+    setIsLoading(true);
     let { data: bills, error } = await supabase
       .from('bills')
-      .select(
-        `
-        *,
-        images (
-          *
-        )
-      `
-      )
+      .select('*')
       .eq('user_id', session.user.id);
     if (error) console.log('error', error);
     else {
       setBills(bills);
-      setIsEmptyList(bills.length === 0);
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="dashboard">
-      <div className={clsx('overlay', isProfileOpen && 'blurred')}></div>
+      {/* <div className={clsx('overlay', isProfileOpen && 'blurred')}></div> */}
 
       <Header title="Your documents">
         <button
@@ -106,21 +123,34 @@ const Dashboard = ({ session }) => {
       </OffscreenCard>
 
       <OffscreenCard
-        title="Create new"
+        title="Create new document"
         isOpen={isCreateOpen}
         setIsOpen={setIsCreateOpen}
       >
-        {/* TODO: implement create card */}
-        <p>create new item</p>
+        <Create
+          setIsCreateOpen={setIsCreateOpen}
+          bills={bills}
+          setBills={setBills}
+          newDocumentId={newDocumentId}
+          session={session}
+        />
       </OffscreenCard>
 
-      {!loading &&
+      {!isLoading &&
         (isEmptyList ? (
           <EmptyState createClickHandler={() => setIsCreateOpen(true)} />
         ) : (
-          bills.map((bill) => {
-            return <div key={bill.id}>{bill.title}</div>;
-          })
+          <>
+            {bills.map((bill) => {
+              return <div key={bill.id}>{bill.title}</div>;
+            })}
+            <button
+              className="btn btn-primary btn-with-icon mx-auto my-5"
+              onClick={() => setIsCreateOpen(true)}
+            >
+              <FiPlus />
+            </button>
+          </>
         ))}
     </div>
   );

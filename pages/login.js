@@ -7,14 +7,14 @@ import { FiMail } from 'react-icons/fi';
 import { supabase } from '../utils/supabaseClient';
 
 function Login() {
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
 
   const handleLogin = async (email, password) => {
     try {
-      setLoading(true);
+      setIsLoading(true);
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -24,7 +24,7 @@ function Login() {
     } catch (error) {
       alert(error.error_description || error.message);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -34,7 +34,7 @@ function Login() {
       <h1 className="heading mb-3">Hello again!</h1>
       <p>Enter your credentials to log in.</p>
       <form id="login">
-        <div className="formField">
+        <div className="formField my-5">
           <label htmlFor="email">
             <FiMail />
             <span>Email</span>
@@ -47,7 +47,7 @@ function Login() {
           />
           <p>Please enter valid email</p>
         </div>
-        <div className="formField">
+        <div className="formField my-5">
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -60,7 +60,7 @@ function Login() {
         <div className="buttonsWrapper">
           <button
             type="submit"
-            className={clsx('btn btn-primary', loading && 'disabled')}
+            className={clsx('btn btn-primary', isLoading && 'disabled')}
             onClick={(e) => {
               e.preventDefault();
               handleLogin(email, password);

@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import Dashboard from '../components/Dashboard';
 import Welcome from '../components/Welcome';
@@ -39,6 +40,13 @@ const Home = () => {
       subscription?.unsubscribe();
     };
   }, []);
+
+  if (isLoading)
+    return (
+      <div className={clsx('loader', isLoading && 'visible')}>
+        <span className="loaderIcon"></span>
+      </div>
+    );
 
   if (!session) return <Welcome />;
 

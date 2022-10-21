@@ -7,21 +7,21 @@ import { FiLock, FiMail } from 'react-icons/fi';
 import { supabase } from '../utils/supabaseClient';
 
 function Register() {
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
 
   const handleRegistration = async (email, password) => {
     try {
-      setLoading(true);
+      setIsLoading(true);
       const { error } = await supabase.auth.signUp({ email, password });
       if (error) throw error;
       await createProfile();
     } catch (error) {
       alert(error.error_description || error.message);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
       router.push('/');
     }
   };
@@ -45,7 +45,7 @@ function Register() {
 
   async function createProfile() {
     try {
-      setLoading(true);
+      setIsLoading(true);
       const user = await getCurrentUser();
 
       const updates = {
@@ -61,7 +61,7 @@ function Register() {
     } catch (error) {
       alert(error.message);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }
 
@@ -74,7 +74,7 @@ function Register() {
         Free forever!
       </p>
       <form id="login">
-        <div className="formField">
+        <div className="formField my-5">
           <label htmlFor="email">
             <FiMail />
             <span>Email</span>
@@ -87,7 +87,7 @@ function Register() {
           />
           <p>Please enter valid email</p>
         </div>
-        <div className="formField">
+        <div className="formField my-5">
           <label htmlFor="password">
             <FiLock />
             <span>Password</span>
@@ -103,7 +103,7 @@ function Register() {
         <div className="buttonsWrapper">
           <button
             type="submit"
-            className={clsx('btn btn-primary', loading && 'disabled')}
+            className={clsx('btn btn-primary', isLoading && 'disabled')}
             onClick={(e) => {
               e.preventDefault();
               handleRegistration(email, password);
