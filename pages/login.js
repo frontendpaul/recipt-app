@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import { FiMail } from 'react-icons/fi';
+import { FiLock, FiMail } from 'react-icons/fi';
 import { supabase } from '../utils/supabaseClient';
 
 function Login() {
@@ -48,7 +48,10 @@ function Login() {
           <p>Please enter valid email</p>
         </div>
         <div className="formField my-5">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">
+            <FiLock />
+            <span>Password</span>
+          </label>
           <input
             type="password"
             value={password}

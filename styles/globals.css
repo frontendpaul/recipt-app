@@ -81,7 +81,6 @@ body {
   height: 100%;
   font-family: Lato, sans-serif;
   color: var(--stone-900);
-  --scrollbar-width: 0.5rem;
 }
 
 
@@ -129,7 +128,7 @@ li {
 }
 
 .pt-0 {
-  padding-top: 0;
+  padding-top: 0 !important;
 }
 
 .mx-auto {
@@ -150,6 +149,10 @@ li {
 
 .my-5 {
   margin-block: var(--s-5);
+}
+
+.hidden {
+  display: none !important;
 }
 
 
@@ -192,6 +195,14 @@ p+p {
   font-weight: normal;
 }
 
+.semiBold {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 700;
+}
+
 /* Colors */
 .color-stone-500 {
   color: var(--stone-500);
@@ -230,7 +241,7 @@ p+p {
   .card {
     width: min(100%, 400px);
     margin-inline: var(--s-5);
-    border-radius: var(--br-600);
+    border-radius: var(--br-500);
     box-shadow: var(--shadow-400);
   }
 
@@ -303,12 +314,13 @@ p+p {
 .btn-primary {
   color: var(--white);
   background-color: var(--light-red-300);
-  box-shadow: var(--light-red-shadow-500);
+  /* box-shadow: var(--light-red-shadow-500); */
 }
 
 .btn-primary:focus-visible,
 .btn-primary:hover {
-  box-shadow: var(--light-red-shadow-700);
+  background-color: var(--light-red-350);
+  /* box-shadow: var(--light-red-shadow-700); */
 }
 
 .btn-white {
@@ -456,7 +468,6 @@ p+p {
 
 .cardHeader {
   --btn-width: 48px;
-  --spacing-base: var(--s-3);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -468,16 +479,23 @@ p+p {
   flex: 1;
 }
 
-@media (min-width: 640px) {
-  .cardHeader {
-    --spacing-base: var(--s-5);
-  }
-}
-
 .dashboard {
   display: flow-root;
   position: relative;
   min-height: 100vh;
+}
+
+.billsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.bill {
+  padding: var(--s-3) var(--s-4);
+  border: 1px solid var(--stone-150);
+  border-radius: var(--br-200);
+  text-align: left;
 }
 
 .overlay {
@@ -518,7 +536,7 @@ p+p {
   }
 
   .offscreenCard {
-    border-radius: var(--br-600);
+    border-radius: var(--br-500);
   }
 
   .offscreenCard:is(.open) {}
@@ -545,19 +563,12 @@ p+p {
 }
 
 .settingsNav {
-  --spacing-base: var(--s-4);
   flex: 1;
   margin-top: var(--spacing-base);
   padding: var(--spacing-base);
   padding-right: calc(var(--spacing-base) - var(--scrollbar-width));
   overflow: auto;
   scrollbar-gutter: stable;
-}
-
-@media (min-width: 640px) {
-  .settingsNav {
-    --spacing-base: var(--s-5);
-  }
 }
 
 .settingsNav ul {
@@ -584,17 +595,10 @@ p+p {
 }
 
 .emptyState {
-  --spacing-base: var(--s-4);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: var(--spacing-base);
-}
-
-@media (min-width: 640px) {
-  .emptyState {
-    --spacing-base: var(--s-5);
-  }
 }
 
 .emptyStateImageWrapper {
@@ -615,10 +619,21 @@ p+p {
   flex-direction: column;
   gap: var(--s-5);
   padding-top: 0;
+  flex: 1;
+  overflow: auto;
+  padding-right: calc(var(--spacing-base) - var(--scrollbar-width));
+  padding-bottom: 0;
+  margin-bottom: var(--spacing-base);
+  scrollbar-gutter: stable;
 }
 
 .createForm .btn {
   display: block;
+  width: 100%;
+}
+
+.createForm input {
+  width: 100%;
 }
 
 .loader {

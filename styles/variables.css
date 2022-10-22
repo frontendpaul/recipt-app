@@ -16,6 +16,7 @@ xxl: 1536px;
   --light-red-100: hsl(0, 83%, 93%);
   --light-red-200: hsl(0, 89%, 78%);
   --light-red-300: hsl(1, 96%, 67%);
+  --light-red-350: hsl(1, 76%, 60%);
   --light-red-400: hsl(0, 56%, 54%);
   --light-red-500: hsl(0, 54%, 42%);
 
@@ -67,6 +68,9 @@ xxl: 1536px;
   --s-9: calc(var(--spacer) * 5);
   --s-10: calc(var(--spacer) * 6);
 
+
+  --spacing-base: var(--s-4);
+
   /*--- Sizes ---*/
   --aside-width: 500px;
 
@@ -85,4 +89,11 @@ xxl: 1536px;
   /*--- Others ---*/
   --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
   --transition: 0.3s var(--ease-out);
+  --scrollbar-width: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --spacing-base: var(--s-5);
+  }
 }

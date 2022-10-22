@@ -56,6 +56,8 @@ const Dashboard = ({ session }) => {
     }
   };
 
+  const currentDate = new Date();
+
   return (
     <div className="dashboard">
       {/* <div className={clsx('overlay', isProfileOpen && 'blurred')}></div> */}
@@ -133,6 +135,7 @@ const Dashboard = ({ session }) => {
           setBills={setBills}
           newDocumentId={newDocumentId}
           session={session}
+          currentDate={currentDate}
         />
       </OffscreenCard>
 
@@ -140,17 +143,26 @@ const Dashboard = ({ session }) => {
         (isEmptyList ? (
           <EmptyState createClickHandler={() => setIsCreateOpen(true)} />
         ) : (
-          <>
-            {bills.map((bill) => {
-              return <div key={bill.id}>{bill.title}</div>;
-            })}
+          <div className="cardPadding pt-0">
+            <div className="billsList">
+              {bills.map((bill) => {
+                return (
+                  <div className="bill" key={bill.id}>
+                    <h3 className="headline">{bill.title}</h3>
+                    <span className="footnote">{bill.id}</span>
+                    <br />
+                    <span className="footnote">{bill.created_at}</span>
+                  </div>
+                );
+              })}
+            </div>
             <button
               className="btn btn-primary btn-with-icon mx-auto my-5"
               onClick={() => setIsCreateOpen(true)}
             >
               <FiPlus />
             </button>
-          </>
+          </div>
         ))}
     </div>
   );
