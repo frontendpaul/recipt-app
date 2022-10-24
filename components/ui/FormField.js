@@ -1,9 +1,8 @@
 import clsx from 'clsx';
-import { useRef } from 'react';
 
 const FormField = ({
   onChange,
-  defaultValue,
+  value,
   label,
   labelIcon,
   name,
@@ -13,7 +12,6 @@ const FormField = ({
   className,
   ...props
 }) => {
-  const ref = useRef(null);
   return (
     <div className={clsx('formField', className)} {...props}>
       <label htmlFor={id}>
@@ -26,7 +24,7 @@ const FormField = ({
           id={id}
           name={name}
           type={type}
-          value={defaultValue}
+          value={value}
           autoComplete={autoComplete}
           onChange={onChange}
         ></textarea>
@@ -35,7 +33,7 @@ const FormField = ({
           id={id}
           name={name}
           type={type}
-          value={defaultValue}
+          value={value}
           autoComplete={autoComplete}
           onChange={onChange}
         />

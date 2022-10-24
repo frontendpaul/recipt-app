@@ -343,12 +343,12 @@ p+p {
 
 .btn-outline {
   background-color: transparent;
-  border: 1px solid var(--stone-150);
+  border: 1px solid var(--stone-200);
 }
 
 .btn-outline:focus-visible,
 .btn-outline:hover {
-  border-color: var(--stone-300);
+  border-color: var(--stone-400);
 }
 
 .btn svg {
@@ -602,7 +602,9 @@ p+p {
 }
 
 .emptyStateImageWrapper {
+  position: relative;
   width: 40%;
+  aspect-ratio: 0.7;
   margin-bottom: var(--s-7);
 }
 
@@ -634,6 +636,12 @@ p+p {
 
 .createForm input {
   width: 100%;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
 }
 
 .loader {

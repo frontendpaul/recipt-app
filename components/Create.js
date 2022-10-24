@@ -71,7 +71,7 @@ const Create = ({
         name="title"
         id="title"
         label="Title"
-        defaultValue={formState.title}
+        value={formState.title}
         onChange={handleValueChange}
       />
       <FormField
@@ -86,22 +86,33 @@ const Create = ({
         name="date"
         id="date"
         label="Date"
-        defaultValue={formState.date}
+        value={formState.date}
         onChange={handleValueChange}
       />
 
-      <div>
-        <button type="submit" className="btn btn-outline mb-3">
+      <div className="formSection">
+        <button
+          type="button"
+          className="btn btn-outline"
+          onClick={() => setFormState({ ...formState, qr_code_link: 'link' })}
+        >
           Scan QR Code
         </button>
-        <FormField
-          className={clsx(formState.qr_code_link === '' && 'hidden')}
-          name="qr_code_link"
-          id="qr_code_link"
-          label="QR Code link"
-          defaultValue={formState.qr_code_link}
-          onChange={handleValueChange}
-        />
+        {formState.qr_code_link !== '' && (
+          <FormField
+            name="qr_code_link"
+            id="qr_code_link"
+            label="QR Code link"
+            value={formState.qr_code_link}
+            onChange={handleValueChange}
+          />
+        )}
+      </div>
+
+      <div>
+        <button type="button" className="btn btn-outline">
+          Add a photo
+        </button>
       </div>
 
       <button type="submit" className="btn btn-primary">

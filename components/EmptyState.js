@@ -1,10 +1,11 @@
+import Image from 'next/future/image';
 import { FiPlus } from 'react-icons/fi';
 
 const EmptyState = ({ createClickHandler }) => {
   return (
     <div className="emptyState">
       <div className="emptyStateImageWrapper">
-        <img src="/empty-state.svg" alt="" />
+        <Image src="/empty-state.svg" fill alt="" />
       </div>
 
       <h1 className="heading mb-3">
